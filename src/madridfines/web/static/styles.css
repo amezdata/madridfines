@@ -1,0 +1,345 @@
+:root {
+  --asphalt: #14181f;
+  --card: #1e252e;
+  --plate: #f3efe4;
+  --sodium: #e8a317;
+  --grave: #d6453d;
+  --leve: #8fb9a8;
+  --line: #2c333c;
+  color: var(--plate);
+  background: var(--asphalt);
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--asphalt);
+  color: var(--plate);
+}
+
+button,
+select,
+input {
+  font: inherit;
+  color: var(--plate);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.45rem 0.9rem;
+  border-color: var(--sodium);
+  color: var(--sodium);
+  background: transparent;
+}
+
+button:hover { background: var(--sodium); color: var(--asphalt); }
+
+button:disabled { opacity: 0.45; cursor: progress; }
+
+select,
+input {
+  padding: 0.4rem 0.55rem;
+  min-width: 7rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sodium);
+  outline-offset: 2px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.brand-mark,
+.brand-city,
+.count {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.brand-mark {
+  font-size: 2.6rem;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.brand-city {
+  color: var(--sodium);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b7b1a4;
+}
+
+.status {
+  min-height: 1.4rem;
+  margin: 0;
+  padding: 0 1.5rem;
+  color: var(--sodium);
+}
+
+main { padding: 0.5rem 1.5rem 2rem; }
+
+.empty {
+  max-width: 36rem;
+  padding: 2rem 0;
+}
+
+.empty p { margin-top: 0; }
+
+.count {
+  font-size: clamp(4.5rem, 12vw, 8rem);
+  line-height: 0.8;
+  color: var(--sodium);
+  font-weight: 600;
+}
+
+.count-label {
+  margin: 0.35rem 0 0;
+  text-transform: lowercase;
+}
+
+.section-title {
+  margin: 1.5rem 0 0.55rem;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b7b1a4;
+}
+
+.ledger .section-title { margin-top: 0; }
+
+.collected {
+  margin: 0;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: clamp(2.6rem, 6vw, 3.6rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+  color: var(--plate);
+}
+
+.collected-note {
+  max-width: 28rem;
+  margin: 0.4rem 0 0.9rem;
+  color: #b7b1a4;
+  font-size: 0.95rem;
+}
+
+.road { margin: 0 0 1.2rem; }
+
+.lane {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 180px;
+  padding: 0 6px 8px;
+  background: #191e26;
+  border-top: 4px solid var(--line);
+  border-bottom: 4px solid var(--line);
+}
+
+.lane::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 62%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--plate) 0 12px,
+    transparent 12px 24px
+  );
+  opacity: 0.35;
+}
+
+.traffic {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-height: 2px;
+  background: var(--sodium);
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  letter-spacing: 0.08em;
+  color: #b7b1a4;
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.grade,
+.money-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0 0.35rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.grade { border-left: 3px solid var(--plate); }
+.grade.leve { border-left-color: var(--leve); }
+.grade.grave,
+.grade.muy { border-left-color: var(--grave); }
+
+.money-row span:last-child,
+.grade span:last-child {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.03em;
+}
+
+.reporters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0 0 0.2rem;
+}
+
+.reporter {
+  display: grid;
+  grid-template-columns: minmax(9rem, 18rem) minmax(0, 1fr) auto;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.reporter-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #b7b1a4;
+}
+
+.reporter-track {
+  display: block;
+  height: 14px;
+  background: #191e26;
+  border-top: 3px solid var(--line);
+  border-bottom: 3px solid var(--line);
+}
+
+.reporter-bar {
+  display: block;
+  height: 100%;
+  background: var(--sodium);
+}
+
+.reporter-count {
+  min-width: 4.5rem;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.03em;
+  text-align: right;
+}
+
+.map-band {
+  margin: 0.4rem -1.5rem 1.75rem;
+}
+
+.search-label { margin-bottom: 0.8rem; max-width: 28rem; }
+
+input[type="search"] { width: 100%; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.4rem 0.2rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: baseline;
+}
+
+th {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b7b1a4;
+  font-weight: 600;
+}
+
+td:nth-child(n + 2),
+th:nth-child(n + 2) { text-align: right; }
+
+#map {
+  height: min(70vh, 760px);
+  min-height: 480px;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.leaflet-tile-pane {
+  filter: grayscale(1) invert(1) brightness(0.82) contrast(0.92);
+}
+
+.map-note {
+  margin: 0.4rem 0 0;
+  color: #b7b1a4;
+}
+
+footer {
+  padding: 0 1.5rem 2rem;
+  color: #b7b1a4;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
+  .top,
+  .ledger { display: block; }
+  .controls { margin-top: 1rem; }
+  .ledger > div + div { margin-top: 1rem; }
+  .reporter { grid-template-columns: 1fr auto; }
+  .reporter-name { grid-column: 1 / -1; }
+  #map { height: 62vh; min-height: 360px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

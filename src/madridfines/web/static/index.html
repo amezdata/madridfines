@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Madrid Fines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/static/styles.css?v=7">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <p class="brand-mark">Fines</p>
+      <p class="brand-city">Madrid</p>
+    </div>
+    <div class="controls">
+      <label>Year
+        <select id="year"></select>
+      </label>
+      <label>Month
+        <select id="month"></select>
+      </label>
+      <button type="button" id="refresh">Refresh</button>
+    </div>
+  </header>
+  <p class="status" id="status" role="status"></p>
+  <main>
+    <section id="empty" class="empty" hidden>
+      <p id="empty-text">There is no month on this computer.</p>
+      <button type="button" id="download">Download the latest month</button>
+    </section>
+    <section id="dashboard" hidden>
+      <p class="count" id="count">0</p>
+      <p class="count-label">fines in <span id="period-label"></span></p>
+      <h2 class="section-title">Fines by hour</h2>
+      <div class="road" aria-label="Fines by hour of the day">
+        <div class="lane" id="lane"></div>
+        <div class="ticks" id="ticks"></div>
+      </div>
+      <div class="ledger">
+        <div id="grades"></div>
+        <div>
+          <h2 class="section-title">Early-payment estimate</h2>
+          <p class="collected" id="collected">€0</p>
+          <p class="collected-note" id="collected-note">The data does not say whether the fine was paid. The 50% rate counts only when DESCUENTO is SI.</p>
+          <div id="money"></div>
+        </div>
+      </div>
+      <h2 class="section-title">Reporter type</h2>
+      <div class="reporters" id="reporters" aria-label="Fines by reporter type"></div>
+      <h2 class="section-title">Map of fines</h2>
+      <div class="map-band">
+        <div id="map" role="region" aria-label="Map of streets with coordinates"></div>
+      </div>
+      <section class="streets">
+        <label class="search-label">Street
+          <input id="search" type="search" placeholder="Search street" autocomplete="off">
+        </label>
+        <table>
+          <thead>
+            <tr>
+              <th>Street</th>
+              <th>Fines</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id="places"></tbody>
+        </table>
+      </section>
+    </section>
+  </main>
+  <footer>
+    Data from the Madrid City Council, CC BY 4.0 licence.
+    The detail is published about three months late.
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/app.js?v=9"></script>
+</body>
+</html>

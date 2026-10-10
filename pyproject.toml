@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "madridfines"
+version = "1.0.0"
+description = "Download, clean, and browse traffic fines from the Madrid City Council."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "R.H. Amezqueta" }]
+keywords = ["madrid", "fines", "open-data", "traffic", "duckdb"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "pandas>=1.3.0",
+    "numpy>=1.20.0",
+    "requests>=2.25.0",
+    "beautifulsoup4>=4.9.0",
+    "matplotlib>=3.3.0",
+    "pyarrow>=14.0.0",
+    "duckdb>=1.0.0",
+    "pyproj>=3.4.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.27.0",
+    "truststore>=0.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "httpx>=0.27"]
+
+[project.urls]
+"Open data" = "https://datos.madrid.es/dataset/210104-0-multas-circulacion-detalle"
+
+[project.scripts]
+madridfines = "madridfines.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+madridfines = ["web/static/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests", "src/madridfines"]
+addopts = "--doctest-modules --cov=madridfines --cov-report=term-missing --cov-fail-under=95"
+doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE"]
+
+[tool.coverage.run]
+source = ["madridfines"]
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
+exclude_lines = ["if __name__ == .__main__.:"]

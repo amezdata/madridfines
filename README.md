@@ -110,10 +110,4 @@ Each row is one fine. After cleaning, names have no surrounding spaces, and the 
 
 The page projects those coordinates to latitude and longitude only for the map, and drops points that fall outside the city.
 
-## Tests
 
-```bash
-pytest
-```
-
-They do not open charts and they do not go online. The required coverage of the package is 95%.
